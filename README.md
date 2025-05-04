@@ -1,6 +1,8 @@
 # 🎓 Course Management System
 
-This project is a relational database-based system for managing students, instructors, courses, and enrollments — built with PostgreSQL, DBeaver, Aiven, and Power BI.
+## 📓 Project Overview
+
+This Course Management System is a database-driven solution designed to manage the relationships between students, instructors, and courses. It enables tracking of enrollments, grades, and overall course performance. Built using PostgreSQL on Aiven and managed through DBeaver, it includes schema design, data population with Faker, performance queries, and visualization using Power BI.
 
 ---
 
@@ -13,77 +15,31 @@ This project is a relational database-based system for managing students, instru
 
 ---
 
-## 🗂️ Features
+## 🔍 ERD (Entity Relationship Diagram)
 
-* Manage Students, Instructors, Courses
-* Track Enrollments and Grades
-* Query-based analytics (e.g., top students, course performance)
-* Power BI dashboard with KPIs and charts
-* SQL Triggers, Views, Indexes for optimization and logging
+![image](https://github.com/user-attachments/assets/f1eb121a-4945-42d4-a7a4-c09b45fcfab3)
 
----
 
-## 📊 Database Schema
+## 📂 Instructions to Run the SQL Code
 
-The system includes the following tables:
-
-| Table         | Description                             |
-| ------------- | --------------------------------------- |
-| `Students`    | Student info (name, email, DOB)         |
-| `Instructors` | Instructor info                         |
-| `Courses`     | Courses offered with instructor FK      |
-| `Enrollments` | Which student is in what course & grade |
-
-See `docs/ERD.png` for full schema diagram.
-
----
-
-## 📊 Power BI Dashboard
-
-See: `dashboard/course_dashboard.pbix`
-
-* Total Students, Courses, Instructors
-* Top Students by GPA
-* Courses by Avg Grade
-* Student-level performance breakdown
-
----
-
-## 📦 SQL Highlights
-
-* `sql/schema.sql`: Create all tables with constraints
-* `sql/views.sql`: `student_course_summary` view
-* `sql/queries.sql`:
-
-  * Top 3 students
-  * Failing students
-  * Enrollments under “John Smith”
-* `sql/triggers.sql`: Log insertions into Enrollments
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the Repo
+1. Clone the Repo:
 
 ```bash
 git clone https://github.com/yourusername/course-management-system.git
 cd course-management-system
 ```
 
-### 2. Set Up the Database
-
-Run schema and data:
+2. Set Up the Database in DBeaver or pgAdmin:
 
 ```sql
--- In DBeaver or pgAdmin
+-- Create schema and tables
 \i sql/schema.sql
+
+-- Insert sample data
 \i data/sample_data.sql
 ```
 
-### 3. Run Queries
-
-Explore:
+3. Explore Queries:
 
 ```sql
 \i sql/queries.sql
@@ -91,14 +47,45 @@ Explore:
 
 ---
 
-## 💡 To-Do
+## 📄 Explanation of the Schema
 
-* [ ] Add user interface with Python Flask
-* [ ] Export dashboard to web
-* [ ] Dockerize the app
+* **Students**: Stores student info (name, email, DOB)
+* **Instructors**: Contains instructor info (name, email)
+* **Courses**: Course details with a foreign key reference to instructors
+* **Enrollments**: Connects students to courses and stores grades and enrollment dates
+
+---
+
+## 🔢 Key Queries
+
+* **Top 3 Students by GPA**
+* **Students Enrolled in Courses Taught by 'John Smith'**
+* **Students Failing More Than One Course**
+* **Average Grade per Course**
+* **Students’ Average Grade Across All Courses**
+
+---
+
+## 📈 Sample Output Screenshots
+
+See `dashboard/course_dashboard.pbix` for:
+
+* Overall student performance
+* Course average grades
+* Instructor course statistics
+
+---
+
+## ⚡ Challenges and Lessons Learned
+
+* Ensuring data relationships were correctly enforced using foreign keys
+* Generating realistic sample data with Faker
+* Efficient querying on large data using indexes
+* Translating raw data into actionable insights through Power BI
+* Understanding the value of normalization and schema design
 
 ---
 
 ## 📜 License
 
-MIT License.
+MIT License
