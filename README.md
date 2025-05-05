@@ -36,15 +36,24 @@ create database course_management
 \i data/create_tables.sql
 ```
 
-3. Explore Queries:
+3. Populate Database with Fake Data Using Python
+Make sure you have installed Python together with psycopg2 and Faker:
+```python
+pip install psycopg2 faker
+```
+Run the Python script to populate Students, Instructors, Courses, and Enrollments  
+```python
+python data/populate_data.ipynb
+```
+This will generate and insert realistic fake data into your PostgreSQL database  
+**NOTE:- I am using Jupyter Notebook for this project and ensure to use your <b>Own Aiven Credentials<b>**
+
+4. Explore Queries:
 
 ```sql
 \i sql_queries.sql
 ```
 
----
-
-## 
 
 ## 📄 Explanation of the Database Schema
 
@@ -59,6 +68,7 @@ create database course_management
   
 **4. Enrollments**:  
 - Connects students to courses and stores grades and enrollment dates
+
 
 ## 🔢 Key Queries
 
@@ -112,10 +122,10 @@ WHERE e.grade = 'F'
 GROUP BY s.student_id, s.first_name, s.last_name
 HAVING COUNT(*) > 1;
 ```
-**Output Students Failing More Than One Course**
-![image](https://github.com/user-attachments/assets/fe4bb5cf-4a4f-4826-b9f1-80c55c73bf6e)
+**Output Students Failing More Than One Course**  
+![image](https://github.com/user-attachments/assets/fe4bb5cf-4a4f-4826-b9f1-80c55c73bf6e)  
 
-**Note Jessica Mack has failed more than one course**  
+**Note Jessica Mack has failed more than one course**    
 
 **4. Average Grade per Course**
 ```sql
@@ -138,6 +148,11 @@ HAVING COUNT(*) > 1;
  join student_score s on c.course_id = s.course_id
  order by s.course_score desc;
 ```
+**Ouput: Average grade per course**  
+![image](https://github.com/user-attachments/assets/a33ee0e1-8536-426c-a3f5-16da6e3f08fa)  
+
+**Transport Plasnner leads with an average of 3.5**  
+
 **5. Students’ Average Grade Across All Courses**
 ```sql
 with student_avg as (
@@ -158,6 +173,11 @@ from students s
 join student_avg sa on s.student_id = sa.student_id
 order by sa.course_score desc;
 ```
+**Output:- Students’ Average Grade Across All Courses**  
+![image](https://github.com/user-attachments/assets/726c3387-7cbc-4469-b31b-6d800e29e358)  
+
+**Top Student leads with a Average grade of 4**  
+
 **6. Instructors with the number of courses they teach.**
 ```sql
 with instructor_courses as (
@@ -168,6 +188,10 @@ select concat(i.first_name, ' ', i.last_name) as full_name, ic.no_courses
 from instructors i 
 join instructor_courses ic on i.instructor_id = ic.instructor_id;
 ```
+**Output:- Instructors with the number of courses they teach.**  
+![image](https://github.com/user-attachments/assets/44a8fd47-bdbb-4f6d-b858-ae7b61efc7b0)  
+
+**There are 10 courses and Evelyn Rogers leads in number of courses they teach**
 
 **7. Create a VIEW named student_course_summary (student name, course, grade).**
 ```SQL
@@ -180,12 +204,14 @@ create view student_course_summary as(
 	join courses c on c.course_id = e.course_id
 )
 ```
+** Created a View named student_course_summary that shows students name, course they are enrolled in and their grade**  
+
 **8. Add an INDEX on Enrollments.student_id.**
 ```sql
 create index student_idx
 on enrollments(student_id);
 ```
-
+**Added an index on enrollment table on student_id column for faster retrieval of data from enrollment table**  
 
 ## ⚡ Challenges and Lessons Learned
 
