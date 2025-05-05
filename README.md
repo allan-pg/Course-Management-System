@@ -2,7 +2,7 @@
 
 ## 📓 Project Overview
 
-Course Management System is a database-driven solution that stores students information, students enrollments courses offered, and instructors for the courses offered and designed to manage the relationships between students, instructors, and courses. It enables tracking of enrollments, grades, and overall course performance. It is Built using PostgreSQL on Aiven and managed through DBeaver.
+Course Management System is a database-driven solution that enables tracking of enrollments, grades, and overall course performance. It stores students information, students enrollments courses offered, and instructors for the courses offered and designed to manage the relationships between students, instructors, and courses. It is Built using PostgreSQL on Aiven and managed through DBeaver.
 
 ## 🔧 Tech Stack
 
