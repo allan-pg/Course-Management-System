@@ -36,7 +36,7 @@ create database course_management
 \i data/create_tables.sql
 ```
 
-3. Populate Database with Fake Data Using Python
+3. Populate Database with Fake Data Using Python  
 Make sure you have installed Python together with psycopg2 and Faker:
 ```python
 pip install psycopg2 faker
