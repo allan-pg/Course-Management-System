@@ -44,7 +44,9 @@ create database course_management
 
 ---
 
-## 📄 Explanation of the Schema
+## 
+
+## 📄 Explanation of the Database Schema
 
 **1. Students**:
 - Stores student info that is (student_id, name, email, DOB)
@@ -170,6 +172,7 @@ create view student_course_summary as(
 create index student_idx
 on enrollments(student_id);
 ```
+
 
 ## ⚡ Challenges and Lessons Learned
 
