@@ -83,7 +83,11 @@ join student_avg sa on s.student_id = sa.student_id
 order by sa.course_score desc
 limit 3;
 ```
+**Output Top 3 Students by GPA**
 
+![image](https://github.com/user-attachments/assets/8ed0a305-4f94-49e8-98d7-c6252a5e910a)
+
+**These are our top 3 students with GPA of 4**  
 **2. Students Enrolled in Courses Taught by 'John Smith'**
 ```sql
 select s.student_id, s.first_name, s.last_name
@@ -93,6 +97,11 @@ join courses c on c.course_id = e.course_id
 join instructors i on i.instructor_id = c.instructor_id
 where i.first_name like 'John' and i.last_name like 'Smith';
 ```
+**Output Students Enrolled in Courses Taught by 'John Smith'**  
+
+![image](https://github.com/user-attachments/assets/22f042d3-4f68-4508-801d-09b2765359bb)
+  
+**Note: There was no instructor by the name 'John Smith' in our Instructors table**  
 
 **3. Students Failing More Than One Course**
 ```sql
@@ -103,6 +112,10 @@ WHERE e.grade = 'F'
 GROUP BY s.student_id, s.first_name, s.last_name
 HAVING COUNT(*) > 1;
 ```
+**Output Students Failing More Than One Course**
+![image](https://github.com/user-attachments/assets/fe4bb5cf-4a4f-4826-b9f1-80c55c73bf6e)
+
+**Note Jessica Mack has failed more than one course**  
 
 **4. Average Grade per Course**
 ```sql
