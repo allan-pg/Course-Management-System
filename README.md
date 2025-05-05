@@ -64,7 +64,7 @@ This will generate and insert realistic fake data into your PostgreSQL database
 - Contains instructor info (instructor_id, name, email)
 
 **3. Courses**:  
-- contains course details with a foreign key referencing to instructors table
+- contains course details(course_name, course_description) with a foreign key referencing to instructors table
   
 **4. Enrollments**:  
 - Connects students to courses and stores grades and enrollment dates
